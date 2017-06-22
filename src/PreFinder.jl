@@ -27,7 +27,7 @@ module PreFinder
     return :( s -> isempty(s) ? $default : first(s) )
   end
 
-  dealwithresponse(res::Response) = res |> preparse |> parseresponse
+  dealwithresponse(res::Response) ::String = res |> preparse |> parseresponse
 
   parseresponse(data::Message{:error}) = data.message |> error
   parseresponse(data::Message{:plain}) = data.message

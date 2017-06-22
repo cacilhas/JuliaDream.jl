@@ -21,7 +21,7 @@ module PreFinderTest
         no_cookies, data, Request(), Response[], true, Request[],
       )
       # TODO: review this behavior
-      @test dealwithresponse(res) == ""
+      @test (@inferred dealwithresponse(res)) == ""
     end
 
     @testset "response 200 with pre element" begin
@@ -34,7 +34,7 @@ module PreFinderTest
         ),
         no_cookies, data, Request(), Response[], true, Request[],
       )
-      @test dealwithresponse(res) == "here code"
+      @test (@inferred dealwithresponse(res)) == "here code"
     end
 
     @testset "response 200 with no content-type" begin
@@ -46,7 +46,7 @@ module PreFinderTest
         ),
         no_cookies, data, Request(), Response[], true, Request[],
       )
-      @test dealwithresponse(res) == "here code"
+      @test (@inferred dealwithresponse(res)) == "here code"
     end
 
     @testset "response 200 with plain text" begin
@@ -59,7 +59,7 @@ module PreFinderTest
         ),
         no_cookies, data, Request(), Response[], true, Request[],
       )
-      @test dealwithresponse(res) == data
+      @test (@inferred dealwithresponse(res)) == data
     end
 
     @testset "response 204" begin
@@ -70,7 +70,7 @@ module PreFinderTest
         ),
         no_cookies, "", Request(), Response[], true, Request[],
       )
-      @test dealwithresponse(res) == ""
+      @test (@inferred dealwithresponse(res)) == ""
     end
 
     @testset "internal server error" begin
