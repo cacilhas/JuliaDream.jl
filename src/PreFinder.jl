@@ -6,14 +6,13 @@ module PreFinder
 
   export dealwithresponse
 
-  typealias Bytes Array{UInt8,1}
+  const Bytes = Array{UInt8,1}
 
-  immutable Message{T}
+  struct Message{T}
     message::String
-
-    Message(message::String) = new(message)
-    Message(message::Bytes) = message |> String |> Message{T}
   end
+
+  Message{T}(message::Bytes) = message |> String |> Message{T}
 
   macro attr(key)
     return :( obj -> obj.$key )
@@ -39,7 +38,7 @@ module PreFinder
   # Do post order deep first traversal on elements to find pre element
   # http://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/
   findpre(elems::PostOrderDFS) =
-    filter(ispre, elems) |> (@firstor HTMLElement(:pre)) |>
+    Iterators.filter(ispre, elems) |> (@firstor HTMLElement(:pre)) |>
     (@attr children) |> @firstor HTMLText("")
   findpre(elems::HTMLNode) = elems |> PostOrderDFS |> findpre
 
