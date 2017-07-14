@@ -10,9 +10,10 @@ module PreFinder
 
   struct Message{T}
     message::String
+    Message{T}(message::String) where T = new{T}(message)
+    Message{T}(message::Bytes) where T = message |> String |> Message{T}
   end
 
-  Message{T}(message::Bytes) = message |> String |> Message{T}
 
   macro attr(key)
     return :( obj -> obj.$key )
