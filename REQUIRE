@@ -1,6 +1,5 @@
-julia 0.5.1
-Compat 0.26.0
+julia 0.6.0
 AbstractTrees 0.1.0
-Gumbo 0.3.0
+Gumbo 0.4.0
 Requests 0.4.1
 Shoco 0.1.0
